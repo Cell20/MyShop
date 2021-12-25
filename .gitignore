@@ -1,0 +1,6 @@
+ms_env
+.env
+*.pyc
+__pycache__
+*.sqlite3
+
