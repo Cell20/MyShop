@@ -15,9 +15,9 @@ def order_create(request):
             # clear the cart
             cart.clear()
             context = {'order': order}
-            return render(request, 'orders/order/created.html', context)
+            return render(request, 'orders/order/created.html', context) # Thank you page
     else:
         form = OrderCreateForm()
-
+                                # Only one page is sent either the above one or below one                                
     context = {'cart': cart, 'form': form}
-    return render(request, 'orders/order/create.html', context)
+    return render(request, 'orders/order/create.html', context)  # order form page
