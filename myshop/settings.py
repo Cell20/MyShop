@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 # pip install python-decouple
+import braintree
 from decouple import config
 from pathlib import Path
 import os
@@ -36,6 +37,7 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'payment.apps.PaymentConfig',
 
     # Default Django Apps
     'django.contrib.admin',
@@ -139,3 +141,16 @@ CART_SESSION_ID = 'cart'
 
 # write emails to console
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Braintree settings
+BRAINTREE_MERCHANT_ID = config("BRAINTREE_MERCHANT_ID")
+BRAINTREE_PUBLIC_KEY = config("BRAINTREE_PUBLIC_KEY")
+BRAINTREE_PRIVATE_KEY = config("BRAINTREE_PRIVATE_KEY")
+
+
+BRAINTREE_CONF = braintree.Configuration(
+    braintree.Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)
