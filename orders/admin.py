@@ -46,9 +46,14 @@ def order_detail(obj):
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     list_display = ['id', 'first_name', 'last_name', 'email',
-                    'address', 'postal_code', 'city', 'paid', 'created', 'updated', order_detail]
+                    'address', 'postal_code', 'city', 'paid', 'created', 'updated', order_detail, order_pdf]
     list_filter = ['paid', 'created', 'updated']
     inlines = [OrderItemInline]
     # An inline allows you to include a model on the same edit page as its related model.
     # It means that Order & OrderItem models of models.py file are displayed on the same page rather than on two different pages.
     actions = [export_to_csv]
+
+    def order_pdf(obj):
+        url = reverse('orders:admin_order_pdf', args=[obj.id])
+        return mark_safe(f'< href="{url}">PDF</a>')
+    order_pdf.short_description = 'Invoice'
