@@ -23,15 +23,23 @@ class Order(models.Model):
     discount = models.IntegerField(
         default=0, validators=[MinValueValidator(0), MaxValueValidator(100)])
 
+    def get_total_cost(self):
+        total_cost = sum(item.get_cost() for item in self.items.all())
+        return total_cost
+
+    def get_discount(self):
+        if self.coupon:
+            return (self.coupon.discount / Decimal(100) * self.get_total_cost())
+        return Decimal(0)
+
+    def get_total_cost_after_discount(self):
+        return self.get_total_cost() - self.get_discount()
+
     class Meta:
         ordering = ('-created',)
 
     def __str__(self):
         return f'Order {self.id}'
-
-    def get_total_cost(self):
-        total_cost = sum(item.get_cost() for item in self.items.all())
-        return total_cost - total_cost * (self.discount / Decimal(100))
 
 
 class OrderItem(models.Model):

@@ -11,6 +11,9 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 import weasyprint
+from decimal import Decimal
+
+# convert cart.get_discount into order.get_discount to avoid sessions issues
 
 
 def order_create(request):
@@ -23,6 +26,7 @@ def order_create(request):
             if cart.coupon:
                 order.coupon = cart.coupon
                 order.discount = cart.coupon.discount
+                order.code = cart.coupon.code
             order.save()
             for item in cart:
                 OrderItem.objects.create(
@@ -30,7 +34,6 @@ def order_create(request):
 
             # delay method of task to execute it asynchronously, it'll be added to the queue & will be executed by a worker asa its idle.
             order_created(order.id)
-            # clear the cart
             cart.clear()
             # set the order in the session
             request.session['order_id'] = order.id
