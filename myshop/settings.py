@@ -139,8 +139,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 CART_SESSION_ID = 'cart'
-# write emails to console
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Braintree settings
 BRAINTREE_MERCHANT_ID = config("BRAINTREE_MERCHANT_ID")
@@ -154,3 +152,18 @@ BRAINTREE_CONF = braintree.Configuration(
     BRAINTREE_PUBLIC_KEY,
     BRAINTREE_PRIVATE_KEY
 )
+
+
+# TODO
+# 1 Download the os dependencies from https://weasyprint.readthedocs.io/en/latest/install.html
+# 2 Set up SMTP server and test the emails received.
+
+# SMTP email settings:
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = config("EMAIL")
+EMAIL_HOST_PASSWORD = config("GPW")
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+# write emails to console
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
