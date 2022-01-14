@@ -15,7 +15,7 @@ def payment_completed(order_id):
     # create invoice email
     subject = f'My Shop - EE Invoice no. {order.id}'
     message = 'Please, find attached the invoice for your recent purchase.'
-    email = EmailMessage(subject, message, 'admin@myshop.com', [order.email])
+    email = EmailMessage(subject, message, 'suhail9453531504@gmail.com', [order.email])
 
     # generate PDF
     context = {'order': order}

@@ -19,14 +19,19 @@ def order_create(request):
         form = OrderCreateForm(request.POST)
 
         if form.is_valid():
-            order = form.save()
+            order = form.save(commit=False)
+            if cart.coupon:
+                order.coupon = cart.coupon
+                order.discount = cart.coupon.discount
+            order.save()
             for item in cart:
                 OrderItem.objects.create(
                     order=order, product=item['product'], price=item['price'], quantity=item['quantity'])
+
+            # delay method of task to execute it asynchronously, it'll be added to the queue & will be executed by a worker asa its idle.
+            order_created(order.id)
             # clear the cart
             cart.clear()
-            # delay method of task to execute it asynchronously, it'll be added to the queue & will be executed by a worker asa its idle.
-            order_created.delay(order.id)
             # set the order in the session
             request.session['order_id'] = order.id
             # redirect for payment

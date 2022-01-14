@@ -12,6 +12,7 @@ def order_created(order_id):  # recommended to only pass IDs  & lookup obj as pa
     message = f'Dear {order.first_name}, \n\n' \
               f'You have successfully placed an order.' \
               f'Your order ID is {order.id}.'
-    mail_sent = send_mail(subject, message, 'admin@myshop.com', [order.email])
+    mail_sent = send_mail(
+        subject, message, 'suhail9453531504@gmail.com', [order.email])
     # used send_mail fn provided by django to send an email notification to the user
     return mail_sent
