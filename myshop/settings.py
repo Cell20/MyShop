@@ -14,6 +14,7 @@ import braintree
 from decouple import config
 from pathlib import Path
 import os
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -116,7 +117,18 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# Try https://poedit.net/
+LANGUAGE_CODE = 'en'
+LANGUAGES = (
+    ('en', _('English')),
+    ('es', _('Spanish')),
+)
+
+# Specifies the directories where Django has to look for translation files.
+# Locale paths that appear first have the highest precedence.
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale/'),
+)
 
 TIME_ZONE = config("MY_ZONE")
 
@@ -154,10 +166,8 @@ BRAINTREE_CONF = braintree.Configuration(
     BRAINTREE_PRIVATE_KEY
 )
 
-
-# TODO
-# 1 Download the os dependencies from https://weasyprint.readthedocs.io/en/latest/install.html
-# 2 Set up SMTP server and test the emails received.
+# django-admin compilemessages -i ms_env
+# django-admin makemessages --all -i ms_env
 
 # SMTP email settings:
 EMAIL_HOST = 'smtp.gmail.com'
