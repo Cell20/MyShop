@@ -8,15 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-15 14:14+0530\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2022-01-16 15:38+0530\n"
+"PO-Revision-Date: 2022-01-16 14:39+0530\n"
+"Last-Translator:   <suhail@shop.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.9.8\n"
 
 #: .\cart\forms.py:13 .\cart\templates\cart\detail.html:14
 msgid "Quantity"
@@ -78,13 +79,51 @@ msgstr "Comprar"
 msgid "Coupon"
 msgstr "cupón"
 
-#: .\myshop\settings.py:123
+#: .\myshop\settings.py:126
 msgid "English"
 msgstr "Inglés"
 
-#: .\myshop\settings.py:124
+#: .\myshop\settings.py:127
 msgid "Spanish"
 msgstr "Español"
+
+#: .\myshop\urls.py:25
+msgid "admin/"
+msgstr ""
+
+#: .\myshop\urls.py:26
+msgid "cart/"
+msgstr ""
+
+#: .\myshop\urls.py:27
+msgid "orders/"
+msgstr ""
+
+#: .\myshop\urls.py:28
+msgid "payment/"
+msgstr ""
+
+#: .\myshop\urls.py:29
+#, fuzzy
+#| msgid "Coupon"
+msgid "coupons/"
+msgstr "cupón"
+
+#: .\myshop\urls.py:30
+msgid "rosetta/"
+msgstr ""
+
+#: .\payment\urls.py:8
+msgid "process/"
+msgstr ""
+
+#: .\payment\urls.py:9
+msgid "done/"
+msgstr ""
+
+#: .\payment\urls.py:10
+msgid "canceled/"
+msgstr ""
 
 #: .\shop\templates\shop\base.html:7 .\shop\templates\shop\base.html:12
 msgid "My shop"
@@ -102,9 +141,11 @@ msgid ""
 "\t\t\t\t\t\t\t"
 msgid_plural ""
 "\n"
-"\t\t\t\t\t\t\t\t%(items)s items, $%(total)s\n"
+"\t\t\t\t\t\t\t%(items)s items, $%(total)s\n"
 "\t\t\t\t\t\t"
 msgstr[0] ""
+"\n"
+"%(items)s productos, $%(total)s"
 msgstr[1] ""
 
 #: .\shop\templates\shop\base.html:29

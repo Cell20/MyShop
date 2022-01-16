@@ -13,19 +13,27 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import i18n
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls.i18n import i18n_patterns, urlpatterns
+from django.utils.translation import gettext_lazy as _
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('cart/', include('cart.urls', namespace='cart')),
-    path('orders/', include('orders.urls', namespace='orders')),
-    path('payment/', include('payment.urls', namespace='payment')),
-    path('coupons/', include('coupons.urls', namespace='coupons')),
+urlpatterns = i18n_patterns(
+    # urlpatterns = [
+    path(_('admin/'), admin.site.urls),
+    path(_('cart/'), include('cart.urls', namespace='cart')),
+    path(_('orders/'), include('orders.urls', namespace='orders')),
+    path(_('payment/'), include('payment.urls', namespace='payment')),
+    path(_('coupons/'), include('coupons.urls', namespace='coupons')),
+    path(_('rosetta/'), include('rosetta.urls')),
+    # path('i18n/', include('django.conf.urls.i18n')),
     path('', include('shop.urls', namespace='shop')),
-]
+    # ]
+)
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
