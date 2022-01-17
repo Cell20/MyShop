@@ -52,8 +52,9 @@ INSTALLED_APPS = [
     # Third party apps
     'rosetta',
     'parler',
+    'localflavor',
 ]
-
+# pip install django-localflavor
 PARLER_LANGUAGES = {
     None: (
         {'code': 'en'},
@@ -70,6 +71,7 @@ MIDDLEWARE = [
     # Session Middleware manages the sending & receiving of cookies
     # The default session engine stores session data in the db but we can choose other engine
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
