@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'parler',
     'localflavor',
 ]
-# pip install django-localflavor
+
 PARLER_LANGUAGES = {
     None: (
         {'code': 'en'},
@@ -194,3 +194,7 @@ EMAIL_USE_TLS = True
 
 # write emails to console
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 1
